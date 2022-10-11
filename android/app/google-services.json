@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846569183556",
+    "project_id": "kelola-aja",
+    "storage_bucket": "kelola-aja.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846569183556:android:a729dec83cebdb645adf11",
+        "android_client_info": {
+          "package_name": "com.example.kelola_aja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846569183556-g98li0uvb2qfd8kr2tsbfrgheljk95h5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPJZF4ms8vAWHwV1C9Wc1lCCr5EhcwEzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846569183556-g98li0uvb2qfd8kr2tsbfrgheljk95h5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
