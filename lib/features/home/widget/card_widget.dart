@@ -34,13 +34,13 @@ class CardWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(16.0),
                   topRight: Radius.circular(16.0),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(AppAssets.hamburgerImage),
+                  image: NetworkImage(data.image),
                   fit: BoxFit.cover,
                 ),
               ),

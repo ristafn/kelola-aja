@@ -1,3 +1,3 @@
 class App {
-  static const bool kDebug = false;
+  static const bool kDebug = true;
 }
