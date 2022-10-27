@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kelola_aja/features/cart/cart.dart';
 
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/fonts.dart';
@@ -55,24 +56,32 @@ class AppBarWidget extends StatelessWidget {
           const SizedBox(
             width: 14.0,
           ),
-          Container(
-            height: 60.0,
-            width: 60.0,
-            margin: const EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16.0),
-              boxShadow: [
-                BoxShadow(
-                  offset: const Offset(1, 1),
-                  blurRadius: 4,
-                  color: const Color(kGreyColor).withOpacity(0.25),
-                ),
-              ],
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const CartPage(),
+              ),
             ),
-            child: Image.asset(
-              AppAssets.cartIcon,
-              scale: 1.5,
+            child: Container(
+              height: 60.0,
+              width: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(1, 1),
+                    blurRadius: 4,
+                    color: const Color(kGreyColor).withOpacity(0.25),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                AppAssets.cartIcon,
+                scale: 1.5,
+              ),
             ),
           ),
         ],
