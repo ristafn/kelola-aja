@@ -3,9 +3,13 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kelola_aja/core/hive/hive.dart';
+import 'package:kelola_aja/features/bottom_navigation/bottom_navigation.dart';
 
+import '../../auth/view/auth_page.dart';
+import '../../code/view/code_page.dart';
+import '../../home/view/home_page.dart';
 import '../kelola_app.dart';
-import '../routes/routes.dart';
 
 class KelolaApp extends StatelessWidget {
   const KelolaApp({
@@ -43,7 +47,17 @@ class KelolaAppView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: FlowBuilder<AppStatus>(
         state: context.select((KelolaAppBloc bloc) => bloc.state.status),
-        onGeneratePages: onGenerateAppViewPages,
+        onGeneratePages: (state, pages) {
+          final readCode = HiveConfig.read(box: 'db', key: 'code');
+          final basePage = readCode != null ? BottomNavPage.page() : CodePage.page();
+          
+          switch (state) {
+            case AppStatus.authenticated:
+              return [basePage];
+            case AppStatus.unauthenticated:
+              return [AuthPage.page()];
+          }
+        },
       ),
     );
   }

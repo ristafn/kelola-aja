@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kelola_aja/core/hive/hive.dart';
 
 import '../implementation/home_impl.dart';
 import '../models/product.dart';
@@ -6,16 +7,14 @@ import '../widget/app_bar_widget.dart';
 import '../widget/card_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.code});
+  const HomePage({super.key});
 
-  static Page<void> page(String code) =>
-      MaterialPage<void>(child: HomePage(code: code));
-
-  final String code;
+  static Page<void> page() => const MaterialPage<void>(child: HomePage());
 
   @override
   Widget build(BuildContext context) {
     final homeImpl = HomeImplementation();
+    final code = HiveConfig.read(box: 'db', key: 'code') ?? '';
 
     return Scaffold(
       appBar: const PreferredSize(

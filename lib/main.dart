@@ -29,7 +29,9 @@ Future<void> main() async {
     DevicePreview(
       enabled: App.kDebug,
       builder: (context) {
-        return KelolaApp(authenticationRepository: authenticationRepostiory);
+        return KelolaApp(
+          authenticationRepository: authenticationRepostiory,
+        );
       },
     ),
   );

@@ -4,6 +4,7 @@ import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/fonts.dart';
 import '../../../core/constants/theme.dart';
 import '../../../core/hive/hive.dart';
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../home/view/home_page.dart';
 import '../widget/send_button_widget.dart';
 
@@ -20,11 +21,6 @@ class _CodePageState extends State<CodePage> {
   final TextEditingController codeCon = TextEditingController(text: '');
   final FocusNode node = FocusNode();
   final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -124,13 +120,15 @@ class _CodePageState extends State<CodePage> {
                         if (_formKey.currentState!.validate()) {
                           // Write to hive
                           HiveConfig.write(
-                              box: 'db', key: 'code', value: codeCon.text);
+                            box: 'db',
+                            key: 'code',
+                            value: codeCon.text,
+                          );
 
                           // push to next page
-                          Navigator.push(
-                            context,
+                          Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => HomePage(code: codeCon.text),
+                              builder: (_) => const BottomNavPage(),
                             ),
                           );
                         }

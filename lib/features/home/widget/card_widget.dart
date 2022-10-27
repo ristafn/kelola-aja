@@ -63,11 +63,14 @@ class CardWidget extends StatelessWidget {
                       style: titleStyle,
                     ),
                   ),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
                   Expanded(
                     flex: 1,
                     child: Text(
-                      '${data.stock}',
-                      style: captionStyle,
+                      'stock : ${data.stock}',
+                      style: subtitleStyle,
                     ),
                   ),
                   Expanded(
