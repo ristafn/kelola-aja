@@ -2,6 +2,7 @@ class AppAssets {
   // Images
   static const String greetingImage = 'assets/images/greeting-image.png';
   static const String hamburgerImage = 'assets/images/hamburger.png';
+  static const String codeImage = 'assets/images/code.png';
 
   // Icons
   static const String googleIcon = 'assets/icons/google-icon.png';
