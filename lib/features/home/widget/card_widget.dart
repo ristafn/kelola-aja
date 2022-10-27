@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/fonts.dart';
 import '../../../core/constants/theme.dart';
+import '../../../core/intl/intl.dart';
 import '../models/product.dart';
 
 class CardWidget extends StatelessWidget {
@@ -79,7 +80,7 @@ class CardWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Rp${(data.price)},-',
+                          '${IntlConfig.formatCurrency.format(data.price)},-',
                           style: titleStyle,
                         ),
                         ElevatedButton(
