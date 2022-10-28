@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../core/constants/fonts.dart';
 import '../../../core/constants/theme.dart';
@@ -7,9 +6,10 @@ import '../../../core/intl/intl.dart';
 import '../models/product.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({super.key, required this.data});
+  const CardWidget({super.key, required this.data, required this.onPressed});
 
   final Product data;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class CardWidget extends StatelessWidget {
                           style: titleStyle,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: onPressed,
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(10.0),

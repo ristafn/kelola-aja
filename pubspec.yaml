@@ -28,6 +28,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.17.0
+  syncfusion_flutter_barcodes: ^20.3.52
 
 dev_dependencies:
   bloc_test: ^9.1.0

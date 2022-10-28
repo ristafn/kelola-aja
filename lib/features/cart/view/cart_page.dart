@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kelola_aja/features/cart/cubit/product_counter_cubit.dart';
+import 'package:kelola_aja/features/home/cubit/cart_cubit.dart';
+import 'package:kelola_aja/features/payment/payment.dart';
 
-import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/fonts.dart';
 import '../../../core/constants/theme.dart';
+import '../../../core/intl/intl.dart';
+import '../../home/models/product.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  const CartPage({super.key, required this.products});
+
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => ProductCounterCubit(),
+      child: CartView(products: products),
+    );
+  }
+}
+
+class CartView extends StatelessWidget {
+  const CartView({super.key, required this.products});
+
+  final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +65,7 @@ class CartPage extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 80.0),
               child: ListView(
                 children: List.generate(
-                  10,
+                  products.length,
                   (index) {
                     return Container(
                       height: 120.0,
@@ -61,8 +82,8 @@ class CartPage extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: Colors.red,
                                   borderRadius: BorderRadius.circular(16.0),
-                                  image: const DecorationImage(
-                                    image: AssetImage(AppAssets.hamburgerImage),
+                                  image: DecorationImage(
+                                    image: NetworkImage(products[index].image),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -74,11 +95,11 @@ class CartPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Burger Keju',
+                                    products[index].name,
                                     style: titleStyle,
                                   ),
                                   Text(
-                                    'Rp12000,-',
+                                    '${IntlConfig.formatCurrency.format(products[index].price)},-',
                                     style: titleStyle.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -171,7 +192,14 @@ class CartPage extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => PaymentPage(products: products),
+                          ),
+                        );
+                      },
                       child: Container(
                         height: 50.0,
                         width: 119.0,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kelola_aja/core/hive/hive.dart';
+import 'package:kelola_aja/features/home/cubit/cart_cubit.dart';
 
 import '../implementation/home_impl.dart';
 import '../models/product.dart';
@@ -10,6 +12,18 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static Page<void> page() => const MaterialPage<void>(child: HomePage());
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CartCubit(),
+      child: const HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +44,10 @@ class HomePage extends StatelessWidget {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  return CardWidget(data: snapshot.data![index]);
+                  return CardWidget(
+                    data: snapshot.data![index],
+                    onPressed: () => context.read<CartCubit>().state.add(snapshot.data![index]),
+                  );
                 },
               );
             }
