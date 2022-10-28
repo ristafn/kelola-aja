@@ -66,7 +66,7 @@ class ProfilePage extends StatelessWidget {
             ListTile(
               onTap: () {
                 HiveConfig.delete(box: 'db', key: 'code'); // delete the previous code from hive
-                Navigator.pop(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const CodePage(),
